@@ -1,11 +1,28 @@
 window.onload = () => {
-  loadPage('sign_in');
+  loadPage('product');
 };
 
 const items = [
-  { title: "Gustave Doré", image: "images/paintings/dore2.jpg", precio: 20000 },
-  { title: "Maxfield Parrish", image: "images/paintings/maxfieldparrish1.jpg", precio: 20000 },
-  { title: "William Merrit Chase", image: "images/paintings/williammerrit1.jpg", precio: 20000 }
+  { title: "Jacob wrestling with the angel", 
+    image: "images/paintings/dore2.jpg", 
+    price: 20000,
+    artist: "Gustave Doré",
+    dimensiones:"20x24" },
+
+  { title: "The lantern bearers", 
+    image: "images/paintings/maxfieldparrish1.jpg", 
+    price: 20000,
+    artist: "Maxfield Parrish",
+    dimensiones:"20x24" },
+
+  { title: "The cactus lover",
+    image: "images/paintings/spitzweg1.jpg", 
+    price: 20000,
+    artist: "Carl Spitzweg",
+    dimensiones:"20x24" }
+
+
+
 ];
 
 const pageInits = {
@@ -105,7 +122,6 @@ function loadPage(pageName) {
       content.classList.add('page-' + pageName);
       content.innerHTML = html;
 
-      // Call page-specific init if exists
       if (pageInits[pageName]) pageInits[pageName]();
     })
     .catch(error => {
@@ -118,12 +134,30 @@ function showPrints() {
   let itemsHTML = '';
   items.forEach(item => {
     itemsHTML += 
-      `<article id="print-card">
+      `<button class="print-product" onClick="loadPage('product')"><article class="print-card">
+      
         <div class="print-mockup-1">
-          <img src="${item.image}" id="print-image">
+          <img src="${item.image}" class="print-image">
         </div>
-        <p>${item.title}</p>
-      </article>`;
+
+        <div class="print-info">
+          <p>${item.title}</p>
+          <p>${item.price} CLP</p>
+        </div>
+      </article>
+      </button>`;
+
+      const buttonRight = document.getElementById('scroll-right');
+      const buttonLeft = document.getElementById('scroll-left');
+
+      buttonRight.onclick = function () {
+        document.getElementById('item-list').scrollLeft += 250;
+      };
+
+      buttonLeft.onclick = function () {
+        document.getElementById('item-list').scrollLeft -= 250;
+      };
   });
   document.getElementById('item-list').innerHTML = itemsHTML;
 }
+

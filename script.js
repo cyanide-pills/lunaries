@@ -59,8 +59,11 @@ const pageInits = {
   "sign_in": showSignIn,
   "home": showPrints,
   "product": showProductPage,
-  "all_products": showPrints
+  "all_products": showPrints,
+  "cart": displayCart
 };
+
+
 
 function loadPage(pageName) {
   fetch(pageName + '.html')
@@ -215,13 +218,31 @@ function validateEmail(input, minLength = 1, maxLength = 100) {
 function addToCart() {
   const addPrice= document.getElementById('price').textContent
   const printName = document.querySelector('.product-details h2').textContent
-  cartAmount += parseInt(addPrice);
-  cartItem.push(printName)
-  console.log(cartAmount)
+  cartItem.push({'product-title':printName, 'product-price':addPrice})
   console.log(cartItem)
 }
 
+function displayCart() {
+  let cartHTML = '';
+  let cartAmount= 0;
+  let cartTotalHTML = '';
+  for (const item of cartItem) {
+    cartHTML += `<p>${item['product-title']} - ${item['product-price']} CLP</p>`;
+    cartAmount += parseInt(item['product-price']);
+  }
+
+  document.getElementById('cart-display').innerHTML = cartHTML;
+  document.getElementById('cart-total').innerText = `Total: ${cartAmount} CLP`;
+  console.log(cartAmount)
+
+
+}
+
+
+function showLogIn() {
+  
+}
 
 window.onload = () => {
-  loadPage('all_products'); 
+  loadPage('home'); 
 };

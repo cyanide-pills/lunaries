@@ -15,16 +15,45 @@ body {
 }
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 1.5rem;
+    background-color: white;
+    padding: 1rem 1.5rem;
     margin: 0;
     width: 80%;            
-    background-color: white;
     box-sizing: border-box;
     flex-shrink: 0;   
 
+
+}
+
+.main-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-menu{
+    display: flex;
+    justify-content:space-between;
+    padding-top:1rem;
+    padding-bottom:0;
+    margin-bottom:0;
+    padding-left:1rem;
+    padding-right:1rem;
+
+}
+
+.nav-menu button{
+    background-color: transparent;
+    border:none;
+    font-family: 'Karla', sans-serif;
+    font-size: 14px;
+    margin-bottom:0;
+    
+}
+
+.nav-menu p{
+    margin:1px;
+    color: rgb(200, 200, 200);
 }
 
 
@@ -81,20 +110,21 @@ display: contents;
 }
 
 
-.nav button{
+.user-options button{
     padding:5px 20px ;
-    background-color: rgb(222, 222, 222);
+    background-color: rgb(228, 236, 239);
     border: none;
     border-radius: 15px;
     margin:5px;
+    font-family: 'Karla', sans-serif;
 
 }
 
-.nav button img{
+.user-options button img{
     width:25px;
 }
 
-.nav #carro{
+.user-options #carro{
     background-color: transparent;
 }
 
@@ -270,8 +300,7 @@ display: contents;
   pointer-events: none;     
   z-index: 1;
 }
-
-#item-list {
+.item-list {
     gap:3rem;
     display: flex;
     flex-direction: row;
@@ -309,18 +338,16 @@ display: contents;
 
 .product-page {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(100px, 1fr) 1fr;
   gap: 5rem;
   box-sizing: border-box;
   overflow: hidden;
-  padding:0rem 10rem;
+  padding:0rem 5rem;
 }
-.product-page > * { min-width: 0; } 
 
 
-.product-page #product-mockup {
-  position: relative;
-  overflow: hidden;
+
+.product-page #print-mockup-1 {
   width: 100%;
   max-width: 100%; 
 }
@@ -333,9 +360,7 @@ display: contents;
   height: 100%;
   object-fit: contain;  
   position: static;
-  top: 0;
-  transform: none;
-  filter: none;
+
 }
 
 
@@ -345,9 +370,7 @@ display: contents;
   }
 }
 
-.product-details {
 
-}
 
 .product-details h2 {
   font-family: 'Playfair Display', serif;
@@ -391,3 +414,20 @@ p.description{
     font-size: 14px;
     background-color: rgb(228, 228, 228);
 }
+
+
+
+
+/*all products*/
+
+
+
+
+.catalog-items{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width:inherit;
+
+    
+ }

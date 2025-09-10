@@ -13,6 +13,30 @@ const items = [
     descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
   },
   {
+    title: "Jacob wrestling with the angel",
+    image: "images/paintings/dore2.jpg",
+    price: 20000,
+    artist: "Gustave Doré",
+    dimensiones: "20x24",
+    descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+  },
+  {
+    title: "Jacob wrestling with the angel",
+    image: "images/paintings/dore2.jpg",
+    price: 20000,
+    artist: "Gustave Doré",
+    dimensiones: "20x24",
+    descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+  },
+  {
+    title: "Jacob wrestling with the angel",
+    image: "images/paintings/dore2.jpg",
+    price: 20000,
+    artist: "Gustave Doré",
+    dimensiones: "20x24",
+    descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+  },
+  {
     title: "The lantern bearers",
     image: "images/paintings/maxfieldparrish1.jpg",
     price: 20000,
@@ -34,7 +58,8 @@ const items = [
 const pageInits = {
   "sign_in": showSignIn,
   "home": showPrints,
-  "product": showProductPage
+  "product": showProductPage,
+  "all_products": showPrints
 };
 
 function loadPage(pageName) {
@@ -198,5 +223,5 @@ function addToCart() {
 
 
 window.onload = () => {
-  loadPage('product'); 
+  loadPage('all_products'); 
 };

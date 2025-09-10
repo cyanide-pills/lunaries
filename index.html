@@ -15,14 +15,30 @@
 
 <body>
     <header class="header">
-            <div class="title-logo">
-                <button onClick="loadPage('home')"><img src="images/icons/lunaries.png">
-                <h1>lunaries prints</h1> </button>
+        <div class="main-header">
+                <div class="title-logo">
+                    <button onClick="loadPage('home')"><img src="images/icons/lunaries.png">
+                    <h1>lunaries prints</h1> </button>
+                </div>
+                <nav class="user-options">
+                    <button onclick="loadPage('sign_in')">registrate</button>
+                    <button>inicia sesión</button>
+                    <button id="carro"><img src="images/icons/cart.png"></button>
+                </nav>
             </div>
-            <nav class="nav">
-                <button onclick="loadPage('sign_in')">registrate</button>
-                <button>inicia sesión</button>
-                <button id="carro"><img src="images/icons/cart.png"></button>
+            <nav class="nav-menu">
+
+                <button onClick="loadPage('home')">inicio</button>
+                <p> | </p>
+                <button onClick="loadPage('all_products')">productos</button>
+                <p> | </p>
+                <button onClick="loadPage('category')">categorias</button>
+                <p> | </p>
+                <button onClick="loadPage('about')">sobre nosotros</button>
+                <p> | </p>
+                <button onClick="loadPage('about')">blogs</button>
+
+
             </nav>
     </header>
 

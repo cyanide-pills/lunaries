@@ -60,7 +60,8 @@ const pageInits = {
   "home": showPrints,
   "product": showProductPage,
   "all_products": showPrints,
-  "cart": displayCart
+  "cart": displayCart,
+  "log_in": showLogIn
 };
 
 
@@ -240,7 +241,7 @@ function displayCart() {
 
 
 function showLogIn() {
-  
+
 }
 
 window.onload = () => {

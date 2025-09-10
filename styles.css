@@ -309,10 +309,11 @@ display: contents;
 
 .product-page {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 500px;
-  gap: 8rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 5rem;
   box-sizing: border-box;
   overflow: hidden;
+  padding:0rem 10rem;
 }
 .product-page > * { min-width: 0; } 
 
@@ -321,7 +322,6 @@ display: contents;
   position: relative;
   overflow: hidden;
   width: 100%;
-  aspect-ratio: 3 / 4;
   max-width: 100%; 
 }
 
@@ -345,7 +345,9 @@ display: contents;
   }
 }
 
+.product-details {
 
+}
 
 .product-details h2 {
   font-family: 'Playfair Display', serif;
@@ -353,26 +355,39 @@ display: contents;
   margin-top: 0;
 }
 
-.description{
+.product-details p{
   font-family: 'Karla', sans-serif;
-  line-height: 0.4;
+  line-height: 0.3
+}
+p.description{
+    line-height: 1.2;
+    padding-top: 1rem;;
 }
 
 .product-details button {
     margin-top: 200px;
 }
 
-.dimensions {
+.specifications {
     width: 100%;
     background-color: rgb(228, 228, 228);
     border-radius: 10px;
 
 }
 
-.dimensions-text {
+.specifications-text {
     padding: 14px;
     box-sizing: border-box;
     font-family: 'Karla', sans-serif;
     font-size: 14px;
     padding-bottom: 1px;
+}
+
+.cart {
+    font-family: Karla, sans-serif;
+    border: none;
+    padding: 14px 14px 14px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    background-color: rgb(228, 228, 228);
 }

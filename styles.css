@@ -69,7 +69,13 @@ body {
 
 }
 
-#social-media img{
+
+.social-media{
+    display: block;
+    margin-left: auto;
+}
+
+.social-media img{
     width:15px;
 }
 
@@ -469,7 +475,7 @@ p.description{
 
 .cart-item{
     font-family: 'Karla', sans-serif;
-    font-size: 20px;
+    font-size: 17px;
     text-align: left;
     margin-top: 1rem;
 }
@@ -477,12 +483,15 @@ p.description{
 
 .cart-total {
     font-family: 'Karla', sans-serif;
-    font-size: 20px;
+    font-size: 17px;
     text-align: right;
     margin-top: 1rem;
 }
 
-
+.cart-action button{
+    display: block;
+    margin-left: auto;
+}
 
 
 

@@ -2,6 +2,7 @@
 let selectedProductIndex = null;
 let cartItem =[];
 let allUser = [];
+let loggedUser = [];
 
 const items = [
   {
@@ -245,6 +246,7 @@ function displayCart() {
   document.getElementById('cart-total').innerText = `Total: ${cartAmount} CLP`;
   console.log(cartAmount)
 
+  document.getElementById("checkout").onclick = checkoutValidation;
 
 }
 
@@ -293,15 +295,29 @@ function showLogIn() {
       alert("Datos ingresados son incorrectos o la cuenta no existe.");
       return;
     }
-
+    loggedUser.push({'email': email, 'password': passwd});
     alert("Ha iniciado sesión!");
   });
 }
 
 
-
-
-
 window.onload = () => {
   loadPage('home'); 
 };
+
+function checkoutValidation() {
+  if (loggedUser.length === 0) {
+    alert("Debe iniciar sesión para continuar con la compra.");
+    loadPage("log_in"); 
+    return;
+  }
+
+  if (cartItem.length === 0) {
+    alert("Su carrito está vacío.");
+    return;
+  }
+
+  alert("Compra realizada con éxito!");
+  cartItem = []; 
+  displayCart(); 
+}

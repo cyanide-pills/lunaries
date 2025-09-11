@@ -1,7 +1,7 @@
 
 let selectedProductIndex = null;
-let cartAmount = 0;
 let cartItem =[];
+let allUser = [];
 
 const items = [
   {
@@ -150,7 +150,6 @@ function showProductPage() {
   document.querySelector(".description").textContent = item.descripcion;
 }
 
-
 function showSignIn() {
   const form = document.getElementById("form");
   const nameInput = document.getElementById("name");
@@ -165,10 +164,15 @@ function showSignIn() {
   if (passwdInput) passwdInput.addEventListener("input", () => validateLength(passwdInput, 4, 10));
   if (numberInput) numberInput.addEventListener("input", () => validateLength(numberInput, 1, 20));
 
-  if (!form) return;
 
   form.addEventListener("submit", function (e) {
-    let valid = true;
+    let valid = true; 
+
+    if (!nameInput.value.trim()) valid = false;
+    if (!addressInput.value.trim()) valid = false;
+    if (!emailInput.value.trim()) valid = false;
+    if (!passwdInput.value.trim()) valid = false;
+    if (!numberInput.value.trim()) valid = false;
 
     if (nameInput && !validateLength(nameInput, 5, 100)) valid = false;
     if (addressInput && !validateLength(addressInput, 10, 100)) valid = false;
@@ -176,9 +180,15 @@ function showSignIn() {
     if (passwdInput && !validateLength(passwdInput, 4, 10)) valid = false;
     if (numberInput && !validateLength(numberInput, 4, 10)) valid = false;
 
-    if (!valid) e.preventDefault();
+    if (!valid) {
+      e.preventDefault(); 
+    } else {
+      e.preventDefault(); 
+      saveSignInINFO();  
+    }
   });
 }
+
 
 
 function validateLength(input, minLength, maxLength) {
@@ -226,9 +236,8 @@ function addToCart() {
 function displayCart() {
   let cartHTML = '';
   let cartAmount= 0;
-  let cartTotalHTML = '';
   for (const item of cartItem) {
-    cartHTML += `<p>${item['product-title']} - ${item['product-price']} CLP</p>`;
+    cartHTML += `<article class="cart-item"> <p>${item['product-title']} - ${item['product-price']} CLP</p></article>`;
     cartAmount += parseInt(item['product-price']);
   }
 
@@ -240,9 +249,58 @@ function displayCart() {
 }
 
 
-function showLogIn() {
+function saveSignInINFO() {
+  let userEmail = document.getElementById("email").value || "" ;
+  let userPasswd = document.getElementById("passwd").value|| "";
+  let userName = document.getElementById("name").value|| "";
+  let userNumber = document.getElementById("number").value|| "";
+  let userAddress = document.getElementById("address").value|| "";
+
+  allUser.push({'email': userEmail, 'passwd': userPasswd, 'name': userName, 'number': userNumber, 'address': userAddress});
+  console.log(allUser);
 
 }
+
+
+
+
+
+function showLogIn() {
+  const form = document.getElementById("form"); 
+  const emailInput = document.getElementById("email");
+  const passwdInput = document.getElementById("passwd");
+
+  if (emailInput) emailInput.addEventListener("input", () => validateEmail(emailInput));
+  if (passwdInput) passwdInput.addEventListener("input", () => validateLength(passwdInput, 4, 10));
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    let valid = true; 
+
+    if (!emailInput.value.trim()) valid = false;
+    if (!passwdInput.value.trim()) valid = false;
+
+    if (emailInput && !validateEmail(emailInput)) valid = false;
+    if (passwdInput && !validateLength(passwdInput, 4, 10)) valid = false;
+
+
+    const email = emailInput.value.trim();
+    const passwd = passwdInput.value.trim();
+
+    const user = allUser.find(u => u.email === email && u.passwd === passwd);
+
+    if (!user) {
+      alert("Datos ingresados son incorrectos o la cuenta no existe.");
+      return;
+    }
+
+    alert("Ha iniciado sesión!");
+  });
+}
+
+
+
+
 
 window.onload = () => {
   loadPage('home'); 

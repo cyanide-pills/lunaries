@@ -1,8 +1,22 @@
 
 let selectedProductIndex = null;
+let selectedBlogIndex = null;
 let cartItem =[];
 let allUser = [];
 let loggedUser = [];
+const blogs = [
+  {
+    title: "Datos curiosos de pintores famosos",
+    info: "Descubre datos interesantes sobre pintores famosos y sus obras maestras.",
+    content: "Van Gogh: vendió solo un cuadro en vida, pintó más de 900 obras y a veces comía sus pinturas. Picasso: nombre de 23 palabras, dibujaba antes de hablar, más de 50,000 obras. Da Vinci: escribía al revés, diseñó inventos adelantados a su tiempo, vegetariano. Monet: obsesionado con la luz, pintaba el mismo paisaje a distintas horas, tenía cataratas. Dalí: bigote extravagante, conferencias en traje de buzo, paseaba un oso hormiguero. Frida Kahlo: sobrevivió a accidente grave, plasmó su dolor en arte colorido y surrealista, cejas y bigote parte de su identidad.",
+    image: "images/paintings/gogh1.jpg"
+  },
+  {
+    title: "Estilos de arte a través de la historia",
+    info: "Descubre estilos de arte a través del tiempo.",
+    content: "Impresionismo: captura luz y color cambiantes con pinceladas rápidas. Surrealismo: mezcla realidad y sueños, lo irracional y lo subconsciente. Cubismo: descompone objetos en formas geométricas y múltiples perspectivas. Realismo: representa la vida cotidiana con detalle y exactitud. Expresionismo: refleja emociones intensas y subjetivas a través del color y la forma. Barroco: dramático, detallado y lleno de movimiento y contraste. Renacimiento: equilibrio, proporción y perspectiva, centrado en la figura humana y la naturaleza.",
+    image: "images/paintings/spitzweg1.jpg"
+}];
 
 const items = [
   {
@@ -62,7 +76,10 @@ const pageInits = {
   "product": showProductPage,
   "all_products": showPrints,
   "cart": displayCart,
-  "log_in": showLogIn
+  "log_in": showLogIn,
+  "blogs": showBlogs,
+  "entry": showEntry
+
 };
 
 
@@ -301,8 +318,54 @@ function showLogIn() {
 }
 
 
+function showBlogs() {
+  const blogsHTML = blogs.map((blog, index) => `
+    <button class="blog-item" data-index="${index}">
+      <article class="blog-post">
+        <img class="blog-image" src="${blog.image}">
+        <div class="blog-text">
+          <h2 class="title">${blog.title}</h2>
+          <p>${blog.info}</p>
+        </div>
+
+      </article>
+    </button>
+  `).join('');
+
+  document.querySelector('.blogs-display').innerHTML = blogsHTML;
+
+  document.querySelectorAll('.blog-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedBlogIndex = Number(btn.dataset.index);
+      loadPage('entry'); 
+    });
+  });
+}
+
+
+
+function showEntry() {
+  const blog = blogs[selectedBlogIndex];
+  const container = document.querySelector('.entry-display');
+  if (!blog || !container) return;
+
+  container.innerHTML = `
+    <article class="blog-entry">
+      <h2 class="entry-title">${blog.title}</h2>
+      <p>${blog.content}</p>
+      <button id="back-button">Volver a blogs</button>
+    </article>
+  `;
+
+  document.getElementById('back-button').addEventListener('click', () => {
+    loadPage('blogs');
+  });
+}
+
+
+
 window.onload = () => {
-  loadPage('home'); 
+  loadPage('blogs'); 
 };
 
 function checkoutValidation() {
